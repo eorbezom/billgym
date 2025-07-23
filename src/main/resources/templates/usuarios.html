@@ -13,18 +13,18 @@
 	<!-- NAVBAR -->
 	<div th:insert="~{home :: navbar}"></div>
 	<main class="flex-grow-1 container mt-5" style="display: flex; flex-direction: column;">
-		<div class="container mt-5">
+		<div class="container mt-3">
 			<h2 class="mb-4">Lista de Usuarios</h2>
 			<!-- Enlace para crear un nuevo usuario -->
 			
 			
 			<a th:href="@{/usuarios/crear}" class="btn btn-success mb-3">Crear
 				+</a> 
-				<!-- <a th:href="@{/loguinTabla}"
-				class="btn btn-info mb-3">Registrar Usuario</a>  -->
+			<a th:href="@{/loguinTabla}"
+				class="btn btn-info mb-3">Registrar Usuario</a> 
+			
 				
 				
-				<a href="#" class="btn btn-info mb-3">Registrar Usuario</a>
 				
 				
 			<!-- PARA BUSCAR USIARIOS-->
@@ -82,8 +82,8 @@
 
 						</span></td>
 						<td><a th:href="@{/usuarios/edit/{id}(id=${usuario.id})}"
-							class="btn  btn-sm"><i class="bi bi-gear-fill "
-								style="color: black; font-size: 1.5em;"></i></a> <a
+							class="btn  btn-sm"><i class="bi bi-pencil-fill "
+								style="color: orange; font-size: 1.5em;"></i></a> <a
 							th:href="@{/usuarios/eliminar/{id}(id=${usuario.id})}"
 							class="btn  btn-sm"
 							onclick="return confirm('¿Estás seguro que deseas eliminar este Usuarios?');"><i
