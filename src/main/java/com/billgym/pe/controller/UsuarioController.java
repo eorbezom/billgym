@@ -88,10 +88,14 @@ public class UsuarioController {
 	
 	//BUSCAR USUARIO POR SU DNI O NOMBRE
 	@GetMapping("/usuarios/buscar")
-	public String buscarUsuario(@RequestParam("buscar")String terminoBusqueda, Model model) {
-		List<Usuario> resultados = usuarioService.buscar(terminoBusqueda);
-		model.addAttribute("usuarios", resultados);
-		return"usuarios";
+	public String buscarUsuario(@RequestParam(value = "buscar", required = false) String terminoBusqueda, Model model) {
+	    if (terminoBusqueda == null || terminoBusqueda.trim().isEmpty()) {
+	        // Si no hay término de búsqueda, mostrar todos los usuarios
+	        return "redirect:/usuarios";
+	    }
+	    List<Usuario> resultados = usuarioService.buscar(terminoBusqueda);
+	    model.addAttribute("usuarios", resultados);
+	    return "usuarios";
 	}
 
 }

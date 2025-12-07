@@ -1,6 +1,7 @@
 package com.billgym.pe.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,6 +15,9 @@ public interface LoguinRepository extends JpaRepository<Loguin, Integer> {
 	List<Loguin> buscarPorDniUsuario(@Param("dni")String usuario);
 	
 	//PARA VALIDAR CONTRASEÑA
-	 Loguin findByUsuarioAndPassword(String usuario, String password);
+	// Loguin findByUsuarioAndPassword(String usuario, String password);
+	 
+	// Buscar por nombre de usuario
+	   Optional<Loguin> findByUsuario(String usuario);
 
 }

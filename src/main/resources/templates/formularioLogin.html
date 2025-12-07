@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Inicio sesión</title>
+<title>Inicio de sesión</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" th:href="@{/css/formularioLoguin.css}">
 <link rel="stylesheet"
@@ -10,45 +10,49 @@
 </head>
 <body>
 
-
-
-
 	<div class="login-wrapper">
 		<div class="login-header">
-			<h2>Bienvenido al portal La Varesina sa 😎</h2>
+			<h2>Bienvenido al portal La Varesina SA 😎</h2>
 			<h3>Por favor ingresa las credenciales</h3>
 		</div>
-		<form th:action="@{/login}" method="post" th:object="${loguin}">
+		
+		<!-- ✅ CORREGIDO: Sin th:object, solo name="" para Spring Security -->
+		<form th:action="@{/login}" method="post">
 
 			<div class="input-field">
-				<input type="text" id="usuario" th:field="*{usuario}"
-					placeholder=" " required> <label for="usuario">Usuario</label>
+				<!-- ✅ Usar name="usuario" en lugar de th:field -->
+				<input type="text" 
+					   id="usuario" 
+					   name="usuario"
+					   placeholder=" " 
+					   required> 
+				<label for="usuario">Usuario</label>
 			</div>
 
 			<div class="input-field">
-				<input type="password" id="password" th:field="*{password}"
-					placeholder=" " required> <label for="password">Contraseña</label>
+				<!-- ✅ Usar name="password" en lugar de th:field -->
+				<input type="password" 
+					   id="password" 
+					   name="password"
+					   placeholder=" " 
+					   required> 
+				<label for="password">Contraseña</label>
 			</div>
 
-			<div th:if="${error}" class="alert alert-danger" role="alert"
-				th:text="${error}"></div>
+			<!-- ✅ Mostrar error de Spring Security -->
+			<div th:if="${param.error}" class="alert alert-danger" role="alert">
+				Usuario o contraseña incorrectos
+			</div>
+			
+			<!-- ✅ Mostrar mensaje de logout -->
+			<div th:if="${param.logout}" class="alert alert-success" role="alert">
+				Sesión cerrada correctamente
+			</div>
 
 			<button type="submit" class="btn btn-primary">Ingresar</button>
 		</form>
 
-
 	</div>
-
-
-
-
-
-
-
-
-
-
-
 
 	<script src="/js/bootstrap.bundle.min.js"></script>
 
